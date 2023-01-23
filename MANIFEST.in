@@ -1,0 +1,7 @@
+include LICENSE
+include README.rst
+recursive-include docs *
+
+exclude test_settings.py
+exclude linkedin_sworker/manage.py
+exclude linkedin_sworker/test_urls.py
