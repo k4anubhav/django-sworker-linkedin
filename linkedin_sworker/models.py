@@ -93,8 +93,8 @@ def save_latest_post(sender, instance: LatestPost, **kwargs):
 
         message = Mail(
             from_email=SENDGRID_EMAIL_FROM,
-            to_emails=instance.search_link.subscriptions.values_list('email', flat=True),
-            subject='New post on LinkedIn - ' + instance.search_link.keyword,
+            to_emails=to_emails,
+            subject=f'New LinkedIn post alert for {instance.search_link.keyword}',
             html_content='''
             <h1>Keyword: {keyword}</h1>
             <p>{body}</p>
