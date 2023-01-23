@@ -21,7 +21,7 @@ class UpdateSubscription(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     enabled = models.BooleanField(default=True)
-    search_links = models.ManyToManyField('SearchLink', related_name='subscriptions')
+    search_links = models.ManyToManyField('SearchLink', related_name='subscriptions', blank=True)
 
     def __str__(self):
         return self.email
