@@ -47,7 +47,7 @@ class SearchLink(models.Model):
         return self.keyword
 
     class Meta:
-        verbose_name_plural = 'Search Keywords'
+        verbose_name_plural = 'Search Links'
         ordering = ('-created_at',)
 
 

@@ -9,6 +9,9 @@ class LatestPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = LatestPost
         fields = ('id', 'body', 'keyword')
+        extra_kwargs = {
+            'id': {'read_only': False, 'validators': []},
+        }
 
 
 class SearchLinkSerializer(serializers.ModelSerializer):
