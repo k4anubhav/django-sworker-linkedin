@@ -82,11 +82,18 @@ class LatestPost(models.Model):
 
 # noinspection PyUnusedLocal
 @receiver(post_save, sender=LatestPost)
-def save_latest_post(sender, instance: LatestPost, **kwargs):
+def save_latest_post(sender, instance: LatestPost, created: bool, **kwargs):
+    if not created:
+        return
     latest_post = LatestPost.objects.filter(search_link_id=instance.search_link_id).first()
     # latest post not found or latest post is same as current post
     if not latest_post or latest_post.id == instance.id:
-        to_emails = list(instance.search_link.subscriptions.values_list('email', flat=True))
+        to_emails = list(
+            instance.search_link
+            .subscriptions
+            .filter(enabled=True)
+            .values_list('email', flat=True)
+        )
         if not to_emails:
             logger.info(f'No subscriptions found for {instance.search_link}')
             return
