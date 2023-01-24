@@ -106,10 +106,12 @@ def save_latest_post(sender, instance: LatestPost, created: bool, **kwargs):
             <h1>Keyword: {keyword}</h1>
             <p>{body}</p>
             <p>Posted at: {posted_at}</p>
+            <p>Link: <a href="{link}">{link}</a></p>
             '''.format(
                 keyword=instance.search_link.keyword,
                 body=instance.body,
-                posted_at=instance.posted_at.strftime('%d %b %Y %H:%M:%S')
+                posted_at=instance.posted_at.strftime('%d %b %Y %H:%M:%S'),
+                link=instance.search_link.search_link
             )
         )
         try:

@@ -13,7 +13,7 @@ class SearchLinksListView(ListAPIView):
     serializer_class = SearchLinkSerializer
 
     def get_queryset(self):
-        return SearchLink.objects.all()
+        return SearchLink.objects.filter(enabled=True)
 
 
 class LatestPostCreateView(CreateAPIView):
